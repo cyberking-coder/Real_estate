@@ -9,7 +9,7 @@ import {
   useSpring,
 } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { IMAGES, img } from '@/lib/images';
+import { MEDIA } from '@/lib/images';
 import { Reveal } from '@/components/motion/Reveal';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -43,7 +43,7 @@ export function Gallery() {
     return () => window.removeEventListener('resize', measure);
   }, []);
 
-  const images = IMAGES.gallery;
+  const images = MEDIA.gallery;
 
   const next = useCallback(
     () => setActive((a) => (a === null ? a : (a + 1) % images.length)),
@@ -119,8 +119,8 @@ export function Gallery() {
             className={`relative overflow-hidden ${i % 3 === 0 ? 'col-span-2 aspect-[16/10]' : 'aspect-[3/4]'}`}
           >
             <Image
-              src={img(id, 1000, 75)}
-              alt={`Elyse Residence gallery image ${i + 1}`}
+              src={id}
+              alt={`Basil Vrundavan gallery image ${i + 1}`}
               fill
               sizes="50vw"
               className="object-cover"
@@ -171,8 +171,8 @@ export function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={img(images[active], 2000, 85)}
-                alt={`Elyse Residence gallery image ${active + 1}`}
+                src={images[active]}
+                alt={`Basil Vrundavan gallery image ${active + 1}`}
                 fill
                 sizes="88vw"
                 className="object-contain"
@@ -220,8 +220,8 @@ function GalleryItem({
       }`}
     >
       <Image
-        src={img(id, 1400, 80)}
-        alt={`Elyse Residence gallery image ${index + 1}`}
+        src={id}
+        alt={`Basil Vrundavan gallery image ${index + 1}`}
         fill
         sizes="40vw"
         className="object-cover transition-transform duration-[1.2s] ease-luxe group-hover:scale-105"

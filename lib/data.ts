@@ -1,5 +1,5 @@
 import type { Feature } from '@/components/Showcase';
-import { IMAGES } from '@/lib/images';
+import { MEDIA } from '@/lib/images';
 
 // ─── Brand ────────────────────────────────────────────────────────────────
 export const BRAND = {
@@ -50,7 +50,7 @@ export const FEATURES: Feature[] = [
       { label: 'Surroundings', value: 'Hills & Greenery' },
       { label: 'Connectivity', value: 'Katraj · NH-48' },
     ],
-    image: IMAGES.ambegaon,
+    image: MEDIA.ambegaon,
     alt: 'The Basil Vrundavan residential towers set against the Ambegaon skyline',
   },
   {
@@ -64,7 +64,7 @@ export const FEATURES: Feature[] = [
       { label: 'Amenities', value: '24+' },
       { label: 'Setting', value: 'Open-Air' },
     ],
-    image: IMAGES.clubhouse,
+    image: MEDIA.clubhouse,
     alt: 'The resort-themed clubhouse and landscaped entrance plaza at Basil Vrundavan',
   },
 ];

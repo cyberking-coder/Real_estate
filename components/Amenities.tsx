@@ -9,10 +9,12 @@ import {
   useReducedMotion,
 } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Reveal } from '@/components/motion/Reveal';
 import { SplitReveal } from '@/components/motion/SplitReveal';
 import { AmenityBadge } from '@/components/AmenityIcon';
 import { AMENITIES, AMENITIES_INTRO } from '@/lib/data';
+import { MEDIA } from '@/lib/images';
 
 function CountUp({ to }: { to: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -84,6 +86,34 @@ export function Amenities() {
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Amenity photo strip */}
+        <div className="mt-20 border-t border-cream/10 pt-12">
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {MEDIA.amenityPhotos.map((photo, i) => (
+              <Reveal
+                as="li"
+                key={photo.src}
+                delay={(i % 5) * 0.06}
+                className={i === 0 ? 'col-span-2 sm:col-span-1' : ''}
+              >
+                <figure className="group relative aspect-[4/5] overflow-hidden" data-cursor="grow">
+                  <Image
+                    src={photo.src}
+                    alt={photo.label}
+                    fill
+                    sizes="(max-width: 640px) 50vw, 20vw"
+                    className="object-cover transition-transform duration-[1.2s] ease-luxe group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/80 via-transparent to-transparent" />
+                  <figcaption className="absolute inset-x-0 bottom-0 p-4 font-sans text-[0.7rem] uppercase tracking-widest text-cream">
+                    {photo.label}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

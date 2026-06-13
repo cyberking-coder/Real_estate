@@ -1,9 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { IMAGES, img } from '@/lib/images';
+import { MEDIA, asset } from '@/lib/images';
 import { HERO, BRAND } from '@/lib/data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -25,16 +24,20 @@ export function Hero() {
 
   return (
     <section ref={ref} id="top" className="relative h-[100svh] w-full overflow-hidden">
-      {/* Parallax background */}
+      {/* Parallax background video */}
       <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0 h-full w-full">
-        <Image
-          src={img(IMAGES.hero, 2400, 80)}
-          alt={`${BRAND.name} — residential towers at dusk`}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={asset(MEDIA.heroPoster)}
+          aria-label={`${BRAND.name} — residential towers`}
+        >
+          <source src={asset(MEDIA.heroVideo)} type="video/mp4" />
+        </video>
       </motion.div>
 
       {/* Tonal overlays for legibility + mood */}

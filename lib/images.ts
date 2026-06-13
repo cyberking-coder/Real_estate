@@ -1,26 +1,33 @@
-// Real Unsplash photo IDs used as PLACEHOLDERS for the project renders.
-// Loaded client-side via next/image. Swap these for the actual Basil
-// Vrundavan renders/photography when available.
-const U = 'https://images.unsplash.com/';
+// Local project media (optimized copies live in /public/media).
+// next/image auto-prefixes basePath for string `src`, so pass these raw to
+// <Image>. For plain <video>/<iframe>/<img>, wrap the path in asset().
 
-export const img = (id: string, w = 1600, q = 80) =>
-  `${U}${id}?auto=format&fit=crop&w=${w}&q=${q}`;
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-export const IMAGES = {
-  hero: 'photo-1600596542815-ffad4c1539a9', // building exterior at dusk
-  intro: 'photo-1512917774080-9991f1c4c750', // architecture
-  ambegaon: 'photo-1567496898669-ee935f5f647a', // towers / skyline
-  clubhouse: 'photo-1600607687939-ce8a6c25118c', // clubhouse interior / lounge
-  amenities: 'photo-1571939228382-b2f2b585ce15', // pool / outdoor amenity
-  contact: 'photo-1613490493576-7fde63acd811', // architectural exterior at night
+/** Prefix a public-folder path with the deploy basePath (for non-next/image tags). */
+export const asset = (p: string) => `${BASE}${p}`;
+
+export const MEDIA = {
+  heroVideo: '/hero-bg.mp4',
+  heroPoster: '/media/ambegaon.jpg',
+  ambegaon: '/media/03.jpg',
+  clubhouse: '/media/am1.jpg',
+  contactBg: '/media/02.jpg',
   gallery: [
-    'photo-1571939228382-b2f2b585ce15', // infinity pool
-    'photo-1600607687939-ce8a6c25118c', // clubhouse lounge
-    'photo-1600585154340-be6161a56a0c', // facade
-    'photo-1600573472550-8090b5e0745e', // dining / kitchen
-    'photo-1505691938895-1758d7feb511', // textured interior
-    'photo-1600210492486-724fe5c67fb0', // calm bedroom
-    'photo-1502672260266-1c1ef2d93688', // bright living space
-    'photo-1600585154526-990dced4db0d', // facade detail
+    '/media/ambegaon.jpg',
+    '/media/ambegao2.jpg',
+    '/media/02.jpg',
+    '/media/amenities1.jpg',
+    '/media/amenities3.jpg',
+    '/media/amenities8.jpg',
+    '/media/amenities5.jpg',
+    '/media/amenities7.jpg',
+  ],
+  amenityPhotos: [
+    { src: '/media/amenities1.jpg', label: 'Rooftop Infinity Pool' },
+    { src: '/media/amenities3.jpg', label: 'Sky Party Terrace' },
+    { src: '/media/amenities5.jpg', label: "Children's Play Area" },
+    { src: '/media/amenities7.jpg', label: 'Landscape Garden & Maze' },
+    { src: '/media/amenities8.jpg', label: 'Fitness Centre' },
   ],
 } as const;

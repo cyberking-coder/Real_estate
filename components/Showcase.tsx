@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Reveal } from '@/components/motion/Reveal';
 import { Parallax } from '@/components/motion/Parallax';
 import { SplitReveal } from '@/components/motion/SplitReveal';
-import { img } from '@/lib/images';
 
 export type Feature = {
   index: string;
@@ -31,7 +30,7 @@ export function Showcase({
           <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/11]">
             <Parallax amount={0.16} className="absolute inset-0">
               <Image
-                src={img(residence.image, 1800, 80)}
+                src={residence.image}
                 alt={residence.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
