@@ -7,7 +7,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { SplitReveal } from '@/components/motion/SplitReveal';
 import { Parallax } from '@/components/motion/Parallax';
 import { MagneticButton } from '@/components/motion/MagneticButton';
-import { MEDIA } from '@/lib/images';
+import { MEDIA, asset } from '@/lib/images';
 import { BRAND } from '@/lib/data';
 
 const FIELDS = [
@@ -33,7 +33,7 @@ export function BookVisit() {
       <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
         <Parallax amount={0.12} className="h-full w-full">
           <Image
-            src={MEDIA.contactBg}
+            src={asset(MEDIA.contactBg)}
             alt=""
             fill
             sizes="100vw"

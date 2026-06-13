@@ -14,7 +14,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { SplitReveal } from '@/components/motion/SplitReveal';
 import { AmenityBadge } from '@/components/AmenityIcon';
 import { AMENITIES, AMENITIES_INTRO } from '@/lib/data';
-import { MEDIA } from '@/lib/images';
+import { MEDIA, asset } from '@/lib/images';
 
 function CountUp({ to }: { to: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -100,7 +100,7 @@ export function Amenities() {
               >
                 <figure className="group relative aspect-[4/5] overflow-hidden" data-cursor="grow">
                   <Image
-                    src={photo.src}
+                    src={asset(photo.src)}
                     alt={photo.label}
                     fill
                     sizes="(max-width: 640px) 50vw, 20vw"

@@ -9,7 +9,7 @@ import {
   useSpring,
 } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { MEDIA } from '@/lib/images';
+import { MEDIA, asset } from '@/lib/images';
 import { Reveal } from '@/components/motion/Reveal';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -119,7 +119,7 @@ export function Gallery() {
             className={`relative overflow-hidden ${i % 3 === 0 ? 'col-span-2 aspect-[16/10]' : 'aspect-[3/4]'}`}
           >
             <Image
-              src={id}
+              src={asset(id)}
               alt={`Basil Vrundavan gallery image ${i + 1}`}
               fill
               sizes="50vw"
@@ -171,7 +171,7 @@ export function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[active]}
+                src={asset(images[active])}
                 alt={`Basil Vrundavan gallery image ${active + 1}`}
                 fill
                 sizes="88vw"
@@ -220,7 +220,7 @@ function GalleryItem({
       }`}
     >
       <Image
-        src={id}
+        src={asset(id)}
         alt={`Basil Vrundavan gallery image ${index + 1}`}
         fill
         sizes="40vw"
