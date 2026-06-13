@@ -102,6 +102,41 @@ export const AMENITIES: Amenity[] = [
   { label: 'Stage', icon: 'hall' },
 ];
 
+// Scroll-pinned amenity "scenes" — text + overlapping images change on scroll.
+export type AmenityScene = {
+  eyebrow: string;
+  title: string; // \n splits into lines
+  copy: string;
+  images: [string, string];
+};
+
+export const AMENITY_SCENES: AmenityScene[] = [
+  {
+    eyebrow: 'The Clubhouse',
+    title: 'Resort-Themed\nClubhouse',
+    copy: 'A perpetual holiday ambiance — a sprawling, resort-style clubhouse designed to be your everyday retreat, just steps from your door.',
+    images: [MEDIA.clubhouse, '/media/amenities1.jpg'],
+  },
+  {
+    eyebrow: 'Leisure & Wellness',
+    title: 'Pool, Gym\n& Steam',
+    copy: 'An infinity-edge swimming pool, a fully-equipped fitness studio and a steam room — space to restore, recharge and unwind.',
+    images: ['/media/amenities8.jpg', '/media/amenities1.jpg'],
+  },
+  {
+    eyebrow: 'Family & Celebration',
+    title: 'Play &\nCelebration',
+    copy: "Children's play zones and a sky party terrace, where every occasion — big or small — finds its perfect stage.",
+    images: ['/media/amenities5.jpg', '/media/amenities3.jpg'],
+  },
+  {
+    eyebrow: 'The Outdoors',
+    title: 'Landscaped\nGardens',
+    copy: 'Manicured gardens, a sculpted hedge maze and quiet sunset points, framed by lush greenery across the estate.',
+    images: ['/media/amenities7.jpg', '/media/amenities3.jpg'],
+  },
+];
+
 // ─── Specification ──────────────────────────────────────────────────────────
 export type Spec = { title: string; icon: string; lines: string[] };
 
