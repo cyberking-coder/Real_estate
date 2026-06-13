@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
 import { NAV_LINKS as LINKS, BRAND } from '@/lib/data';
+import { Logo } from '@/components/Logo';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -31,11 +32,16 @@ export function Navbar() {
           <a
             href="#top"
             data-cursor="grow"
-            className="flex items-baseline gap-2 font-serif text-xl tracking-tightest text-cream transition-opacity hover:opacity-70 sm:text-2xl"
+            className="flex items-center gap-3 text-cream transition-opacity hover:opacity-70"
           >
-            {BRAND.short}<span className="text-gold">.</span>
-            <span className="font-sans text-[0.6rem] uppercase tracking-widest2 text-cream/50">
-              {BRAND.tagline}
+            <Logo className="h-9 w-auto" />
+            <span className="flex flex-col leading-none">
+              <span className="font-serif text-lg tracking-tightest sm:text-xl">
+                {BRAND.short}
+              </span>
+              <span className="font-sans text-[0.55rem] uppercase tracking-widest2 text-cream/55">
+                {BRAND.tagline}
+              </span>
             </span>
           </a>
 

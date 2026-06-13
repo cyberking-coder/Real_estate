@@ -138,7 +138,7 @@ export function AmenityIcon({ name, className }: { name: string; className?: str
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.4}
+      strokeWidth={1.25}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
@@ -149,14 +149,36 @@ export function AmenityIcon({ name, className }: { name: string; className?: str
   );
 }
 
-/** Gold rounded-diamond lozenge wrapper holding an amenity/spec icon. */
-export function AmenityBadge({ name, large = false }: { name: string; large?: boolean }) {
-  const size = large ? 'h-16 w-16' : 'h-14 w-14';
+/**
+ * Gold "marquise" lozenge holding an amenity icon — a thin gold frame with a
+ * faint gradient wash and the icon in gold inside. Reads as jewellery, not
+ * a flat badge.
+ */
+export function AmenityBadge({ name }: { name: string }) {
   return (
-    <span
-      className={`grid ${size} rotate-45 place-items-center rounded-[34%] bg-gold text-charcoal transition-transform duration-500 ease-luxe group-hover:scale-105`}
-    >
-      <AmenityIcon name={name} className="h-6 w-6 -rotate-45" />
+    <span className="relative grid h-20 w-16 place-items-center transition-transform duration-700 ease-luxe group-hover:-translate-y-1">
+      <svg
+        viewBox="0 0 64 80"
+        className="absolute inset-0 h-full w-full"
+        fill="none"
+        aria-hidden
+      >
+        <defs>
+          <linearGradient id={`mq-${name}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#c9a876" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#c9a876" stopOpacity="0.02" />
+          </linearGradient>
+        </defs>
+        {/* marquise / ogee outline */}
+        <path
+          d="M32 2 C 50 16, 58 28, 58 40 C 58 52, 50 64, 32 78 C 14 64, 6 52, 6 40 C 6 28, 14 16, 32 2 Z"
+          fill={`url(#mq-${name})`}
+          stroke="#c9a876"
+          strokeWidth="1"
+          className="transition-[stroke-width] duration-500 group-hover:[stroke-width:1.5]"
+        />
+      </svg>
+      <AmenityIcon name={name} className="relative h-7 w-7 text-gold" />
     </span>
   );
 }
