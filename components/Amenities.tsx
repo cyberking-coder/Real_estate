@@ -13,7 +13,6 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { Reveal } from '@/components/motion/Reveal';
 import { SplitReveal } from '@/components/motion/SplitReveal';
-import { AmenityBadge } from '@/components/AmenityIcon';
 import { AmenitiesShowcase } from '@/components/AmenitiesShowcase';
 import { AMENITIES } from '@/lib/data';
 import { asset } from '@/lib/images';
@@ -95,23 +94,28 @@ export function Amenities() {
         <AmenitiesShowcase onView={setView} />
       </div>
 
-      {/* Full amenity directory */}
+      {/* Full amenity directory — editorial index */}
       <div className="container-luxe mt-24">
         <Reveal>
           <p className="eyebrow mb-12">— Every Comfort, Considered</p>
         </Reveal>
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-x-20 md:grid-cols-2">
           {AMENITIES.map((item, i) => (
-            <Reveal as="li" key={item.label} delay={(i % 6) * 0.04} y={36}>
-              <div className="group flex flex-col items-center text-center">
-                <AmenityBadge name={item.icon} />
-                <span className="mt-4 font-sans text-[0.7rem] uppercase tracking-widest text-cream/65 transition-colors duration-300 group-hover:text-cream">
+            <Reveal as="div" key={item.label} delay={(i % 2) * 0.04} y={24}>
+              <div className="group flex items-center gap-6 border-b border-cream/10 py-5 transition-colors duration-500 hover:border-gold/40">
+                <span className="w-9 shrink-0 font-serif text-base italic text-gold/60 tabular-nums transition-colors duration-300 group-hover:text-gold">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="flex-1 font-sans text-sm font-light uppercase tracking-[0.18em] text-cream/75 transition-colors duration-300 group-hover:text-cream">
                   {item.label}
+                </span>
+                <span className="-translate-x-2 text-gold opacity-0 transition-all duration-500 ease-luxe group-hover:translate-x-0 group-hover:opacity-100">
+                  →
                 </span>
               </div>
             </Reveal>
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Lightbox */}
