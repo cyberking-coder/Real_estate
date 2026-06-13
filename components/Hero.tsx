@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { IMAGES, img } from '@/lib/images';
+import { HERO, BRAND } from '@/lib/data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 // Hero content enters just as the preloader curtain lifts.
@@ -28,7 +29,7 @@ export function Hero() {
       <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0 h-full w-full">
         <Image
           src={img(IMAGES.hero, 2400, 80)}
-          alt="Elyse Residence at dusk — a sculptural modern villa"
+          alt={`${BRAND.name} — residential towers at dusk`}
           fill
           priority
           sizes="100vw"
@@ -55,11 +56,11 @@ export function Hero() {
           className="eyebrow mb-6 flex items-center gap-3"
         >
           <span className="inline-block h-px w-10 bg-gold" />
-          A Private Collection — Est. 2026
+          {HERO.eyebrow}
         </motion.p>
 
-        <h1 className="max-w-[14ch] font-serif text-[15vw] font-light leading-[0.9] tracking-tightest text-cream sm:text-[12vw] lg:text-8xl">
-          {['Quietly', 'Extraordinary', 'Living.'].map((word, i) => (
+        <h1 className="max-w-[16ch] font-serif text-[13vw] font-light leading-[0.9] tracking-tightest text-cream sm:text-[10vw] lg:text-8xl">
+          {HERO.headline.map((word, i) => (
             <span key={word} className="block overflow-hidden">
               <motion.span
                 className="inline-block"
@@ -67,7 +68,11 @@ export function Hero() {
                 animate={{ y: '0%' }}
                 transition={{ duration: 1.1, ease: EASE, delay: INTRO_DELAY + i * 0.12 }}
               >
-                {word === 'Extraordinary' ? <em className="font-light not-italic text-gold">{word}</em> : word}
+                {word === HERO.accent ? (
+                  <em className="font-light not-italic text-gold">{word}</em>
+                ) : (
+                  word
+                )}
               </motion.span>
             </span>
           ))}
@@ -80,20 +85,21 @@ export function Hero() {
             transition={{ duration: 1, ease: EASE, delay: INTRO_DELAY + 0.45 }}
             className="max-w-md font-sans text-base font-light leading-relaxed text-cream/70"
           >
-            Twelve architecturally distinct residences set within a private garden
-            estate. A rare address, composed for those who measure luxury in light,
-            silence, and space.
+            {HERO.subtext}
+            <span className="mt-4 block text-[0.7rem] uppercase tracking-widest2 text-cream/45">
+              MahaRERA Reg. No. {BRAND.rera}
+            </span>
           </motion.p>
 
           <motion.a
-            href="#visit"
+            href={BRAND.brochureUrl}
             data-cursor="grow"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: EASE, delay: INTRO_DELAY + 0.55 }}
             className="group flex items-center gap-4 whitespace-nowrap rounded-full bg-cream px-8 py-4 font-sans text-xs uppercase tracking-widest2 text-charcoal transition-colors duration-500 ease-luxe hover:bg-gold"
           >
-            Discover Elyse
+            Download Brochure
             <span className="transition-transform duration-500 ease-luxe group-hover:translate-x-1">→</span>
           </motion.a>
         </div>

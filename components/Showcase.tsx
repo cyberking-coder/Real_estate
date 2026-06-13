@@ -6,12 +6,12 @@ import { Parallax } from '@/components/motion/Parallax';
 import { SplitReveal } from '@/components/motion/SplitReveal';
 import { img } from '@/lib/images';
 
-export type Residence = {
+export type Feature = {
   index: string;
   name: string;
   type: string;
   copy: string;
-  specs: { label: string; value: string }[];
+  specs?: { label: string; value: string }[];
   image: string;
   alt: string;
 };
@@ -20,7 +20,7 @@ export function Showcase({
   residence,
   flip = false,
 }: {
-  residence: Residence;
+  residence: Feature;
   flip?: boolean;
 }) {
   return (
@@ -65,29 +65,31 @@ export function Showcase({
           </p>
         </Reveal>
 
-        <Reveal delay={0.2}>
-          <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-cream/12 pt-8">
-            {residence.specs.map((spec) => (
-              <div key={spec.label}>
-                <dt className="font-sans text-[0.65rem] uppercase tracking-widest2 text-cream/45">
-                  {spec.label}
-                </dt>
-                <dd className="mt-1.5 font-serif text-2xl font-light text-cream">
-                  {spec.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+        {residence.specs && residence.specs.length > 0 && (
+          <Reveal delay={0.2}>
+            <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-cream/12 pt-8">
+              {residence.specs.map((spec) => (
+                <div key={spec.label}>
+                  <dt className="font-sans text-[0.65rem] uppercase tracking-widest2 text-cream/45">
+                    {spec.label}
+                  </dt>
+                  <dd className="mt-1.5 font-serif text-2xl font-light text-cream">
+                    {spec.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        )}
 
         <Reveal delay={0.25}>
           <a
-            href="#visit"
+            href="#contact"
             data-cursor="grow"
             className="group mt-10 inline-flex items-center gap-3 font-sans text-xs uppercase tracking-widest2 text-cream"
           >
             <span className="border-b border-cream/30 pb-1 transition-colors duration-500 group-hover:border-gold group-hover:text-gold">
-              Enquire about this residence
+              Enquire now
             </span>
             <span className="text-gold transition-transform duration-500 ease-luxe group-hover:translate-x-1">
               →

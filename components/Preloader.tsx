@@ -63,7 +63,7 @@ export function Preloader() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE }}
           >
-            Elyse<span className="text-gold">.</span>
+            Basil<span className="text-gold">.</span>
           </motion.span>
 
           <div className="overflow-hidden">

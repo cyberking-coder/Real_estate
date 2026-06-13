@@ -3,6 +3,7 @@ import { Fraunces, Inter } from 'next/font/google';
 import './globals.css';
 import { Preloader } from '@/components/Preloader';
 import { CustomCursor } from '@/components/CustomCursor';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -20,21 +21,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://elyse-residence.example'),
-  title: 'Elyse Residence — A New Standard of Living',
+  metadataBase: new URL('https://basilvrundavan.com'),
+  title: 'Basil Vrundavan — A Culture of Excellence | Ambegaon, Pune',
   description:
-    'Elyse Residence is a collection of rare, architecturally distinct homes — moody, minimal, and quietly extraordinary. Book a private visit.',
+    'Basil Vrundavan, Narhe Ambegaon Road, Pune — a community of culture & class with a resort-themed clubhouse and 24+ lifestyle amenities. MahaRERA P52100056440.',
   keywords: [
-    'luxury real estate',
-    'Elyse Residence',
-    'penthouse',
-    'duplex residences',
-    'architecture',
+    'Basil Vrundavan',
+    'Ambegaon Pune',
+    'Narhe Ambegaon Road',
+    'luxury apartments Pune',
+    'resort themed clubhouse',
+    'real estate Pune',
   ],
   openGraph: {
-    title: 'Elyse Residence — A New Standard of Living',
+    title: 'Basil Vrundavan — A Culture of Excellence',
     description:
-      'A collection of rare, architecturally distinct homes. Book a private visit.',
+      'A community of culture & class in Ambegaon, Pune. 24+ lifestyle amenities, resort-themed clubhouse. MahaRERA P52100056440.',
     type: 'website',
   },
 };
@@ -50,6 +52,7 @@ export default function RootLayout({
         <Preloader />
         <CustomCursor />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

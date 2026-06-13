@@ -8,11 +8,12 @@ import { SplitReveal } from '@/components/motion/SplitReveal';
 import { Parallax } from '@/components/motion/Parallax';
 import { MagneticButton } from '@/components/motion/MagneticButton';
 import { IMAGES, img } from '@/lib/images';
+import { BRAND } from '@/lib/data';
 
 const FIELDS = [
   { name: 'name', label: 'Full name', type: 'text', placeholder: 'Your name' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'you@email.com' },
-  { name: 'phone', label: 'Phone', type: 'tel', placeholder: '+1 000 000 0000' },
+  { name: 'phone', label: 'Phone', type: 'tel', placeholder: '+91 00000 00000' },
 ] as const;
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -27,12 +28,12 @@ export function BookVisit() {
   };
 
   return (
-    <section id="visit" className="relative overflow-hidden bg-cream text-charcoal">
+    <section id="contact" className="relative overflow-hidden bg-cream text-charcoal">
       {/* faint architectural backdrop */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
         <Parallax amount={0.12} className="h-full w-full">
           <Image
-            src={img(IMAGES.cta, 2000, 70)}
+            src={img(IMAGES.contact, 2000, 70)}
             alt=""
             fill
             sizes="100vw"
@@ -45,31 +46,37 @@ export function BookVisit() {
         <div className="lg:col-span-6">
           <Reveal>
             <p className="mb-6 font-sans text-[0.7rem] uppercase tracking-widest2 text-gold-dark">
-              — Book a Private Visit
+              — Contact Us
             </p>
           </Reveal>
           <SplitReveal
             as="h2"
             by="line"
-            text={'Experience\nElyse in\nperson.'}
+            text={'Book a\nsite visit.'}
             className="font-serif text-5xl font-light leading-[0.98] tracking-tightest text-charcoal sm:text-6xl lg:text-7xl"
             stagger={0.09}
           />
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-md font-sans text-base font-light leading-relaxed text-charcoal/70">
-              Private viewings are held by appointment with a dedicated residence
-              advisor. Share your details and we will be in touch within one
-              business day.
+              Site visits are arranged with a dedicated relationship manager. Share
+              your details and our team will be in touch within one business day.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-col gap-1 border-t border-charcoal/15 pt-8 font-sans text-sm font-light text-charcoal/70">
-              <span>The Elyse Sales Pavilion</span>
-              <span>14 Garden Crescent, London W1</span>
-              <a href="tel:+442070000000" className="mt-3 text-charcoal transition-colors hover:text-gold-dark" data-cursor="grow">
-                +44 (0)20 7000 0000
+              <span>{BRAND.name} Sales Lounge</span>
+              <span>{BRAND.location}</span>
+              <a
+                href={`tel:${BRAND.phone.replace(/\s/g, '')}`}
+                className="mt-3 text-charcoal transition-colors hover:text-gold-dark"
+                data-cursor="grow"
+              >
+                {BRAND.phone}
               </a>
+              <span className="mt-4 text-[0.65rem] uppercase tracking-widest2 text-charcoal/45">
+                MahaRERA Reg. No. {BRAND.rera}
+              </span>
             </div>
           </Reveal>
         </div>
@@ -89,8 +96,8 @@ export function BookVisit() {
                     Thank you.
                   </span>
                   <p className="mt-4 max-w-sm font-sans text-base font-light text-charcoal/70">
-                    Your request has been received. A residence advisor will contact
-                    you shortly to arrange your private visit.
+                    Your enquiry has been received. Our team will contact you
+                    shortly to arrange your site visit.
                   </p>
                 </motion.div>
               ) : (
@@ -118,15 +125,15 @@ export function BookVisit() {
 
                   <label className="flex flex-col gap-2">
                     <span className="font-sans text-[0.65rem] uppercase tracking-widest2 text-charcoal/50">
-                      Residence of interest
+                      Configuration of interest
                     </span>
                     <select
-                      name="residence"
+                      name="configuration"
                       className="border-b border-charcoal/25 bg-transparent pb-3 font-sans text-lg font-light text-charcoal transition-colors duration-500 focus:border-gold-dark focus:outline-none"
                     >
-                      <option>Lumière Duplex</option>
-                      <option>Crown Jewel Penthouse</option>
-                      <option>Atelier Suites</option>
+                      <option>2 BHK Residence</option>
+                      <option>3 BHK Residence</option>
+                      <option>Retail / Shops</option>
                       <option>Undecided</option>
                     </select>
                   </label>
@@ -135,7 +142,7 @@ export function BookVisit() {
                     strength={0.35}
                     className="group mt-2 flex w-fit items-center gap-4 rounded-full bg-charcoal px-9 py-4 font-sans text-xs uppercase tracking-widest2 text-cream transition-colors duration-500 ease-luxe hover:bg-gold-dark"
                   >
-                    Request a Visit
+                    Send Enquiry
                     <span className="transition-transform duration-500 ease-luxe group-hover:translate-x-1">
                       →
                     </span>

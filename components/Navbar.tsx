@@ -2,13 +2,7 @@
 
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
-
-const LINKS = [
-  { label: 'Residences', href: '#residences' },
-  { label: 'Amenities', href: '#amenities' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#visit' },
-];
+import { NAV_LINKS as LINKS, BRAND } from '@/lib/data';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -37,15 +31,15 @@ export function Navbar() {
           <a
             href="#top"
             data-cursor="grow"
-            className="font-serif text-xl tracking-tightest text-cream transition-opacity hover:opacity-70 sm:text-2xl"
+            className="flex items-baseline gap-2 font-serif text-xl tracking-tightest text-cream transition-opacity hover:opacity-70 sm:text-2xl"
           >
-            Elyse<span className="text-gold">.</span>
-            <span className="ml-2 hidden font-sans text-[0.6rem] uppercase tracking-widest2 text-cream/50 sm:inline">
-              Residence
+            {BRAND.short}<span className="text-gold">.</span>
+            <span className="font-sans text-[0.6rem] uppercase tracking-widest2 text-cream/50">
+              {BRAND.tagline}
             </span>
           </a>
 
-          <ul className="hidden items-center gap-10 md:flex">
+          <ul className="hidden items-center gap-7 lg:flex xl:gap-9">
             {LINKS.map((link) => (
               <li key={link.href}>
                 <a
@@ -62,18 +56,18 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             <a
-              href="#visit"
+              href={BRAND.brochureUrl}
               data-cursor="grow"
-              className="hidden rounded-full border border-cream/25 px-6 py-2.5 font-sans text-xs uppercase tracking-widest2 text-cream transition-all duration-500 ease-luxe hover:border-gold hover:bg-gold hover:text-charcoal md:inline-block"
+              className="hidden whitespace-nowrap rounded-full border border-cream/25 px-6 py-2.5 font-sans text-xs uppercase tracking-widest2 text-cream transition-all duration-500 ease-luxe hover:border-gold hover:bg-gold hover:text-charcoal lg:inline-block"
             >
-              Book a Visit
+              Brochure
             </a>
 
             <button
               onClick={() => setOpen((v) => !v)}
               data-cursor="grow"
               aria-label="Toggle menu"
-              className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+              className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] lg:hidden"
             >
               <span
                 className={`h-px w-6 bg-cream transition-all duration-300 ${open ? 'translate-y-[3px] rotate-45' : ''}`}
@@ -94,7 +88,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-charcoal-900 px-8 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-charcoal-900 px-8 lg:hidden"
           >
             <ul className="flex flex-col gap-2">
               {LINKS.map((link, i) => (
@@ -115,11 +109,11 @@ export function Navbar() {
               ))}
             </ul>
             <a
-              href="#visit"
+              href={BRAND.brochureUrl}
               onClick={() => setOpen(false)}
               className="mt-12 inline-block w-fit rounded-full border border-gold px-8 py-3 font-sans text-xs uppercase tracking-widest2 text-gold"
             >
-              Book a Visit
+              Download Brochure
             </a>
           </motion.div>
         )}

@@ -1,31 +1,33 @@
 'use client';
 
 import { Reveal } from '@/components/motion/Reveal';
+import { BRAND } from '@/lib/data';
 
 const COLUMNS = [
   {
     title: 'Explore',
     links: [
-      { label: 'Residences', href: '#residences' },
+      { label: 'About Us', href: '#about' },
       { label: 'Amenities', href: '#amenities' },
+      { label: 'Specification', href: '#specification' },
       { label: 'Gallery', href: '#gallery' },
-      { label: 'Book a Visit', href: '#visit' },
+      { label: 'Location', href: '#location' },
     ],
   },
   {
     title: 'Contact',
     links: [
-      { label: '+44 (0)20 7000 0000', href: 'tel:+442070000000' },
-      { label: 'hello@elyse.residence', href: 'mailto:hello@elyse.residence' },
-      { label: '14 Garden Crescent, W1', href: '#visit' },
+      { label: BRAND.phone, href: `tel:${BRAND.phone.replace(/\s/g, '')}` },
+      { label: BRAND.email, href: `mailto:${BRAND.email}` },
+      { label: BRAND.location, href: '#location' },
     ],
   },
   {
     title: 'Social',
     links: [
       { label: 'Instagram', href: '#' },
-      { label: 'Pinterest', href: '#' },
-      { label: 'LinkedIn', href: '#' },
+      { label: 'Facebook', href: '#' },
+      { label: 'WhatsApp', href: `https://wa.me/${BRAND.whatsapp}` },
     ],
   },
 ];
@@ -37,16 +39,16 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-14 pb-24 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="eyebrow mb-6">— A New Standard of Living</p>
+              <p className="eyebrow mb-6">— A Community of Culture &amp; Class</p>
             </Reveal>
             <Reveal delay={0.05}>
               <p className="max-w-sm font-serif text-3xl font-light leading-tight tracking-tightest text-cream sm:text-4xl">
-                Register your interest for the final release of residences.
+                Register your interest in {BRAND.name}, {BRAND.locality}.
               </p>
             </Reveal>
             <Reveal delay={0.1}>
               <a
-                href="#visit"
+                href="#contact"
                 data-cursor="grow"
                 className="group mt-8 inline-flex items-center gap-3 font-sans text-xs uppercase tracking-widest2 text-cream"
               >
@@ -87,15 +89,15 @@ export function Footer() {
         {/* Oversized wordmark */}
         <div className="overflow-hidden border-t border-cream/10 pt-10">
           <Reveal y={30}>
-            <h2 className="select-none font-serif text-[22vw] font-light leading-[0.8] tracking-tightest text-cream/90 lg:text-[16vw]">
-              Elyse<span className="text-gold">.</span>
+            <h2 className="select-none font-serif text-[16vw] font-light leading-[0.8] tracking-tightest text-cream/90 lg:text-[11vw]">
+              {BRAND.name}<span className="text-gold">.</span>
             </h2>
           </Reveal>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-cream/10 py-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-sans text-xs font-light text-cream/40">
-            © {new Date().getFullYear()} Elyse Residence. A fictional showcase.
+            © {new Date().getFullYear()} {BRAND.name}. MahaRERA Reg. No. {BRAND.rera}.
           </p>
           <div className="flex gap-6 font-sans text-xs font-light text-cream/40">
             <a href="#" className="transition-colors hover:text-cream" data-cursor="grow">
