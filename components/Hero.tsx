@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { MEDIA, asset } from '@/lib/images';
 import { HERO, HERO_STATS, BRAND } from '@/lib/data';
 
@@ -11,8 +12,6 @@ const INTRO_DELAY = 1.95;
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,50 +23,23 @@ export function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '32%']);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const toggleMute = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = !v.muted;
-    if (!v.muted) v.play().catch(() => {});
-    setMuted(v.muted);
-  };
-
   return (
     <section ref={ref} id="top" className="relative h-[100svh] w-full overflow-hidden">
-      {/* Parallax background video */}
+      {/* Parallax background image */}
       <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0 h-full w-full">
-        <video
-          ref={videoRef}
-          className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={asset(MEDIA.heroPoster)}
-          aria-label={`${BRAND.name} — residential towers`}
-        >
-          <source src={asset(MEDIA.heroVideo)} type="video/mp4" />
-        </video>
+        <Image
+          src={asset(MEDIA.clubhouse)}
+          alt={`${BRAND.name} — the lit entrance at dusk`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       </motion.div>
 
       {/* Tonal overlays — dark on the left for legibility, lighter on the right */}
       <div className="absolute inset-0 bg-gradient-to-r from-charcoal-900 via-charcoal-900/55 to-charcoal-900/5" />
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-transparent to-charcoal-900/40" />
-
-      {/* Mute toggle */}
-      <motion.button
-        onClick={toggleMute}
-        data-cursor="grow"
-        aria-label={muted ? 'Unmute video' : 'Mute video'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: INTRO_DELAY + 0.6 }}
-        style={{ opacity: fade }}
-        className="absolute right-5 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/25 text-cream backdrop-blur-sm transition-colors duration-500 hover:border-gold hover:text-gold"
-      >
-        {muted ? <SpeakerOff /> : <SpeakerOn />}
-      </motion.button>
 
       {/* Content */}
       <motion.div
@@ -226,22 +198,6 @@ function MouseIcon() {
         transition={{ duration: 1.8, ease: 'easeInOut', repeat: Infinity }}
       />
     </span>
-  );
-}
-function SpeakerOff() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
-      <path d="m22 9-6 6M16 9l6 6" />
-    </svg>
-  );
-}
-function SpeakerOn() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
-      <path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12" />
-    </svg>
   );
 }
 function StatIcon({ name }: { name: string }) {
