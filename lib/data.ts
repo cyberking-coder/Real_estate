@@ -33,6 +33,14 @@ export const HERO = {
     'Your community of culture & class — a new landmark address rising along Narhe Ambegaon Road, Pune.',
 };
 
+// Hero highlight stats. NOTE: residence count / highway distance are from the
+// design mockup — confirm with project facts.
+export const HERO_STATS = [
+  { icon: 'building', value: '25+', label: 'Luxury Amenities' },
+  { icon: 'home', value: '120+', label: 'Premium Residences' },
+  { icon: 'pin', value: '5 Min', label: 'From Highway' },
+];
+
 // ─── Brand philosophy (intro statement) ─────────────────────────────────────
 export const PHILOSOPHY =
   "Here, excellence isn't a mere aspiration — it's ingrained in every brick and every detail. Not just about homes, but about cultivating experiences that redefine the meaning of living well.";
